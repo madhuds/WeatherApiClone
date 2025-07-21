@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazone Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="common.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="commonscript.js"></script>
+<style>
+    .gallery,.iphoneGallery { display: flex; gap: 20px; flex-wrap: wrap; margin: 10px;}
+    .gallery-item ,.iphoneGallery-item{ cursor: pointer; text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 10px;    font-size: x-small;
+        font-stretch: semi-expanded;
+        font-style: oblique; }
+    .gallery-item img { width: 150px; height: 150px; }
+    .iphoneGallery-item img { width: 150px; height: 150px; }
+    
+        /* Hover effect - slightly increase size */
+        .gallery-item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Click effect - increase size a bit more */
+        .gallery-item.enlarge {
+            transform: scale(1.3);
+        }
+        .iphoneGallery-item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Click effect - increase size a bit more */
+        .iphoneGallery-item.enlarge {
+            transform: scale(1.3);
+        }
+    #mobile-details { margin-top: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; display: none; }
+    .button-container { margin-top: 10px; }
+    button { padding: 8px 16px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; }
+    .add-btn { background-color: #28a745; color: white; }
+    .remove-btn { background-color: #dc3545; color: white; }
+    #buy-btn { background-color: #007bff; color: white; display: none; }
+    #total-amount { font-weight: bold; margin-top: 20px; }
+    .cart-modal {
+        position: fixed;
+        width: 50%;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        background: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+   <header>
+    <div class="navbarT">
+
+        <div class="nav-logo borderHover">
+            <div class="logo">
+              </div>
+        </div>
+        
+            <div class="nav-address borderHover">
+                <p class="add-first">Delover to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-second">India</p>
+                </div>
+            </div>
+     <div class="nav-search">
+        <select class="search-select">
+            <option value="">All</option>
+        </select>
+        <input placeholder="Search Amazon" class="search-input">
+        <div class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+     </div>
+
+
+     <div class="nav-singin borderHover">
+        <p class=""><span>Hello, <a class="singtheform" onclick="singupPage()" href="register.html">sing in</a></span></p>
+        <p class="nav-second">Account & Lists</p>
+     </div>
+
+     <div class="nav-return borderHover">
+        <p class=""><span>Returns</span></p>
+        <p class="nav-second">Accounts</p>
+     </div>  
+        
+     <!-- <div class="nav-cart borderHover">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart
+     </div> -->
+     <div class="nav-cart borderHover" id="cartIcon" onclick="showCart()">
+    <i class="fa-solid fa-cart-shopping"></i>
+    Cart (<span id="cartCount">0</span>)
+</div>
+    </div>
+    <!-- panel-section -->
+    <div class="panel">
+<div class="panel-all" onclick="openAllModal()">
+    <i class="fa-solid fa-bars"></i>
+    All</div>
+<div class="panel-ops">
+    <p>Today's Deals</p>
+    <p>Customer Service</p>
+    <p>Registry</p>
+    <p>Gift Cards</p>
+    <p>Sell</p>
+</div>
+<div class="panel-deals">
+    Shop deals in Electronics
+</div>
+    </div>
+   </header>
+   <!-- hero-section -->
+    <div id="middalepart">
+   <div class="hero-section">
+    <div class="hero-msg">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur sed hic libero praesentium possimus eos natus quos reprehenderit odio sunt?<a href="">Lorem ipsum dolor sit amet.</a></p>
+   </div>
+   </div>
+   <!-- shop section -->
+<div class="mobiles">
+    <div class="mobileDetails">
+        <h4>Samsung Mobiles:</h4>
+        <marquee behavior="scroll" direction="left" scrollamount="infinite" style="font-weight: 600;">    
+          <span>
+            Samsung 25 ultra with offerable price rate is 1,10,000.00.
+            Samsung 25 offerable price rate is 80,000.00.
+            Samsung 24 ultra offerable price rate is 1,00,000.00.
+            Samsung 24 offerable price rate is 65,000.00.
+            Samsung 23 ultra offerable price rate is 90,000.00.
+            Samsung 23 offerable price rate is 50,000.00.
+          </span>
+        </marquee>
+      </div>
+</div>
+    <div class="gallery" id="gallery"></div>
+    <!-- iphone accessories -->
+    <div class="mobiles">
+        <div class="mobileDetails">
+            <h4>Iphone Mobiles:</h4>
+           
+          </div>
+    </div>
+    <div class="iphoneGallery" id="iphoneGallery"></div>
+    <div style="display: flex;">
+    <div id="mobile-details">
+        <div id="selectedImg"></div>
+        <h2 id="mobile-name"></h2>
+        <p id="mobile-type"></p>
+        <p id="mobile-price"></p>
+        <div class="button-container">
+            <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+            <button class="remove-btn" onclick="removeFromCart()">Remove</button>
+        </div>
+        <p id="total-amount">Total Amount: ₹0.00</p>
+    <button id="buy-btn">Buy Now</button>
+    </div>
+    
+    
+  </div>
+
+    
+</div>
+<!-- sin up page  -->
+ <!-- Cart Modal -->
+<div id="cartModal" class="cart-modal" style="display:none;">
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <button id="buyBtn" onclick="buyItems()" style="display:none;">Buy Now</button>
+    <button onclick="closeCart()">Close</button>
+</div>
+<!-- 'All' Modal for customer menu -->
+<div id="allMenu" class="modal-left">
+    <h4 class="cartHeader"><i class="fa-solid fa-address-card"></i>
+        Hello Sing in</h4>
+    <span class="close" onclick="closeAllModal()">&times;</span>
+    <br/>
+    <ul class="Menusub"><li>Today's Deals</li></ul>   
+    <ul><li>Today's Deals</li>
+    <li>Customer Service</li>
+    <li>Registry</li>
+    <li>Gift Cards</li>
+<li>Sell</li></ul>
+<br/>
+<ul class="Menusub"><li>Customer Service</li></ul>  
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+
+    <ul class="Menusub"><li>Registry</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+    <ul class="Menusub"><li>Gift Cards</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+    <ul class="Menusub"><li>Sell</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+</div>
+<script>
+    const images = [
+        { id: 1, src: 'galaxyImg/Samsung-Galaxy-S25-Ultra-.webp', name: 'Samsung S25 Ultra', type: 'Android', price: 110000 },
+        { id: 2, src: 'galaxyImg/samsung25.jpeg', name: 'Samsung S25', type: 'Android', price: 80000 },
+        { id: 3, src: 'galaxyImg/samsung24Ultra.jpeg', name: 'Samsung S24 Ultra', type: 'Android', price: 100000 },
+        { id: 4, src: 'galaxyImg/samsungS24.jpeg', name: 'Samsung S24', type: 'Android', price: 65000 },
+        { id: 5, src: 'galaxyImg/samsung25.jpeg', name: 'Samsung S25', type: 'Android', price: 80000 },
+        { id: 6, src: 'galaxyImg/samsung24Ultra.jpeg', name: 'Samsung S24 Ultra', type: 'Android', price: 100000 },
+        { id: 7, src: 'galaxyImg/samsungS24.jpeg', name: 'Samsung S24', type: 'Android', price: 65000 },
+    ];
+
+    const iPhoneimage = [
+        { id: 1, src: 'iphone/iphone13.jpeg', name: 'Iphone 13', type: 'Iphone', price: 55000 },
+        { id: 2, src: 'iphone/iphone14.jpeg', name: 'Iphone 14', type: 'Iphone', price: 80000 },
+        { id: 3, src: 'iphone/iphone15.jpeg', name: 'Iphone 15', type: 'Iphone', price: 100000 },
+        { id: 4, src: 'iphone/iphone13.jpeg', name: 'Iphone 14 Plus', type: 'Iphone', price: 55000 },
+        { id: 5, src: 'iphone/iphone13.jpeg', name: 'Iphone 15 Pro', type: 'Iphone', price: 120000 },
+        { id: 6, src: 'iphone/iphone13.jpeg', name: 'Iphone 16', type: 'Iphone', price: 140000 },
+        { id: 7, src: 'iphone/iphone13.jpeg', name: 'Iphone 15 Pro Max', type: 'Iphone', price: 125000 },
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const iphoneGallery = document.getElementById('iphoneGallery');
+    const details = document.getElementById('mobile-details');
+    const imgElem = document.getElementById('selectedImg');
+    const nameElem = document.getElementById('mobile-name');
+    const typeElem = document.getElementById('mobile-type');
+    const priceElem = document.getElementById('mobile-price');
+    const totalAmountElem = document.getElementById('total-amount');
+    const buyBtn = document.getElementById('buy-btn');
+
+    let currentMobile = null;
+    let totalAmount = 0;
+
+    images.forEach(image => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${image.src}" alt="${image.name}"><p>${image.name}</p>`;
+        item.onclick = () => showMobileDetails(image);
+        gallery.appendChild(item);
+    });
+    iPhoneimage.forEach(image => {
+        const iItem = document.createElement('div');
+        iItem.className = 'iphoneGallery-item';
+        iItem.innerHTML = `<img src="${image.src}" alt="${image.name}"><p>${image.name}</p>`;
+        iItem.onclick = () => showMobileDetails(image);
+        iphoneGallery.appendChild(iItem);
+    });
+
+    function showMobileDetails(mobile) {
+        currentMobile = mobile;
+        imgElem.innerHTML = `<img src="${mobile.src}" alt="${mobile.name}" style="hight:250px;width:250px">`;
+
+        nameElem.textContent = mobile.name;
+        typeElem.textContent = `Type: ${mobile.type}`;
+        priceElem.textContent = `Price: ₹${mobile.price}`;
+        details.style.display = 'block';
+        details.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function addToCart() {
+        if (currentMobile) {
+            totalAmount += currentMobile.price;
+            updateTotal();
+        }
+    }
+
+    function removeFromCart() {
+        if (currentMobile && totalAmount >= currentMobile.price) {
+            totalAmount -= currentMobile.price;
+            updateTotal();
+        }
+    }
+
+    function updateTotal() {
+        totalAmountElem.textContent = `Total Amount: ₹${totalAmount}`;
+        buyBtn.style.display = totalAmount > 0 ? 'inline-block' : 'none';
+    }
+   //Cart Script
+
+   let cart = [];
+
+    function addToCart() {
+        if (currentMobile) {
+            cart.push(currentMobile);
+            updateCart();
+        }
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+
+    function updateCart() {
+        document.getElementById('cartCount').textContent = cart.length;
+
+        const cartItems = document.getElementById('cartItems');
+        cartItems.innerHTML = '';
+        
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `
+                <img src="${item.src}" style="width:100px; height:100px;">
+                <p>${item.name}</p>
+                <p>Price: ₹${item.price}</p>
+                <button onclick="removeFromCart(${index})">Remove</button>
+            `;
+            cartItems.appendChild(cartItem);
+        });
+
+        const buyBtn = document.getElementById('buyBtn');
+        buyBtn.style.display = cart.length > 0 ? 'block' : 'none';
+    }
+
+    function showCart() {
+        document.getElementById('cartModal').style.display = 'block';
+    }
+
+    function closeCart() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function buyItems() {
+        alert('Proceeding to buy ' + cart.length + ' items');
+        cart = [];
+        updateCart();
+        closeCart();
+    }
+</script>
+</body>
+</html>

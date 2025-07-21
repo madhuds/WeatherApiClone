@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Form and Summary</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="task.css">
+</head>
+<style>
+    body {
+        background-color: #d2dabd;
+        font-size: 14px;
+        font-style: normal;
+    }
+.registartionBody{
+    background-color:rgb(255, 255, 255) ;
+    border-top-left-radius: 5px solid grey;
+}
+    .error {
+        color: red;
+        font-size: smaller;
+    }
+    
+</style>
+<script>
+   
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        const selectedPayScale = document.getElementById("payscale");
+       const enteredSalary = parseFloat(document.getElementById("salary"));
+
+    });
+    
+    
+    function checkEmail() {
+        const emailInput = document.getElementById("email");
+        const emailErrors = document.getElementById("emailError");
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+         const email = emailInput.value;
+
+    if (emailPattern.test(email)) {
+        emailErrors.textContent = "";
+    } else {
+        emailErrors.textContent = "Invalid email format";
+    }
+    validateForm()
+}
+   
+
+    function checkMobileNumber(inputField) {
+        const mobileNumber = inputField.value;
+        const mobileNumberError = document.getElementById('mobileNumberError');
+        const mobileNumberPattern = /^[0-9]{10}$/;
+
+        // Regular expression to match a valid mobile number pattern (adjust as needed).
+   
+
+        if (mobileNumberPattern.test(mobileNumber)) {
+            // Valid mobile number
+            mobileNumberError.textContent = '';
+        } else {
+            // Invalid mobile number
+            mobileNumberError.textContent = 'Invalid mobile number. Please enter a 10-digit number.';
+       
+        }
+        validateForm()
+    }
+    function checkUser(){
+        const user=document.getElementById("username").value;
+        const userError=document.getElementById("usernameError");
+        const userPattern=/^[A-Za-z\ ]*$/;
+        if(userPattern.test(user))
+        {
+            userError.textContent="";
+        }
+        else{
+            userError.textContent="User name must be alphabets and space only";
+            
+        }
+        validateForm()
+     
+    }
+    
+    function checkPass() {
+        const pass = document.getElementById("password").value;
+        const passErrorField = document.getElementById('passError');
+        const passValidate = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!*?&])[A-Za-z\d@$!%*&]{8,}$/;
+
+        if (passValidate.test(pass)) {
+            passErrorField.textContent = "";                  
+        }
+        else {
+            passErrorField.textContent = "Password must includes uppercase, lowercase, digits, and special characters";
+            
+        }
+        validateForm();
+    }   
+    var matchPass = false;
+    function checkPasswordMatch() {
+        const pass = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('txtConfirmPassword').value;
+        const passwordMatchError = document.getElementById('passwordMatchError');
+
+        if (pass === confirmPassword) {
+            passwordMatchError.textContent = ''; // Passwords match, clear error message
+            matchPass = true;
+        } else {
+            passwordMatchError.textContent = 'Passwords do not match.';
+            matchPass = false;
+      
+        }
+        validateForm();
+    
+    }
+
+    var validCheckSalary = false;
+    function checkSalary() {
+    const selectedPayScale = document.getElementById("payscale").value;
+
+    const enteredSalary = parseFloat(document.getElementById("salary").value);
+    if (!isNaN(enteredSalary) && selectedPayScale) {
+        const [minSalary, maxSalary] = selectedPayScale.split("-").map(value => parseFloat(value));
+
+        if (enteredSalary >= minSalary && enteredSalary <= maxSalary) {
+            document.getElementById("slRange").innerHTML = "";
+            document.getElementById("PayErr").innerHTML = "";
+             validCheckSalary = true;
+       
+        } else {
+            document.getElementById("slRange").innerHTML = "Salary is outside the selected pay scale range.";
+            validCheckSalary = false;
+      
+        }
+    } else {
+        document.getElementById("slRange").innerHTML = "";
+        document.getElementById("PayErr").innerHTML = "";
+        validCheckSalary = true;
+      
+    }
+    validateForm()
+}
+function checkDate(){
+    validateForm();
+}
+function validateGender(){
+
+validateForm();
+}
+var validCheckPayScale = false;
+function checkPayScale() {
+    const selectedPayScale = document.getElementById("payscale").value;
+    const enteredSalary = parseFloat(document.getElementById("salary").value);
+    const payError = document.getElementById("PayErr")
+    if (!isNaN(enteredSalary) && selectedPayScale) {
+        const [minSalary, maxSalary] = selectedPayScale.split("-").map(value => parseFloat(value));
+
+        if (enteredSalary >= minSalary && enteredSalary <= maxSalary) {
+            payError.textContent = "";
+            document.getElementById("slRange").innerHTML = "";
+            validCheckPayScale = true;
+      
+        } else {
+            payError.textContent = "Pay scale is outside the salary range.";
+            validCheckPayScale = false;
+          
+    }
+    } else {
+        payError.textContent = "";
+        validCheckPayScale = true;
+  
+    }
+   
+    validateForm()
+}
+    function validateForm(){
+        
+        const user=document.getElementById("username").value;
+        const pass=document.getElementById("password").value;
+        const email=document.getElementById("email").value;
+        const mobileNumber=document.getElementById("mobileNumber").value;
+        const passValidate = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!*?&])[A-Za-z\d@$!%*&]{8,}$/;
+        const mobileNumberPattern = /^[0-9]{10}$/;
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+        const userPattern=/^[A-Za-z\ ]*$/;
+        const date=document.getElementById("dob").value;
+        const gender =document.getElementById("gender").value;
+        const isValid=(userPattern.test(user) &&  emailPattern.test(email) && passValidate.test(pass) && mobileNumberPattern.test(mobileNumber) && matchPass === true && date !== '' && gender !== "" && validCheckPayScale === true && validCheckSalary === true);
+     document.getElementById('submitButton').disabled = !isValid;
+    }
+</script>
+<body>
+    <div class="container -fluid" ;>
+        <br><br>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+
+            <div class="col-sm-8 text-center registartionBody">
+
+                <form action="EmployeeTable.html" onsubmit="return validateForm()" class="was-validated" id="registrationForm" method="post" id="myForm" >
+                    <!-- onclick="checkErrors(event)" -->
+                    <!-- class="was-validated" -->
+                    <br>
+                    <div class="row ">
+                        <div class="col-sm-4 text-center">
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <h4>Employee Registration</h4>
+                        </div>
+                        <div class="col-sm-4"> <span style="font-size:small; margin-right: 35px; color:red;">*Indicates
+                                Mandatory Fields</span></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5 text-center">
+                            <label class="label-font">User Name</label><span style="color: red;">*</span>
+                            <input type="text" id="username" minlength="3" maxlength="20" data-toggled="myToolTip"
+                                pattern="^[a-zA-Z][\sa-zA-Z]*" placeholder="Enter user name" class="form-control " onkeyup="checkUser()"
+                                required="true" autocomplete="off" title="Alphabets and space only">
+                            <!-- <div class="invalid-feedback">
+                                Please enter user name
+                            </div> -->
+                            <div class="error" id="usernameError"></div>
+                        </div>
+                        <div class="col-sm-5">
+                            <!-- /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!*?&])[A-Za-z\d@$!%*&]{8,}$/ -->
+                            <!-- ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,\/&@_\-])[A-Za-z\d.,\/&@_\-]{8,20}$ -->
+                            <label for="label-font">Password</label><span style="color: red;">*</span>
+                            <input type="password" id="password" minlength="3" data-toggled="myToolTip"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,\/&@_\-])[A-Za-z\d.,\/&@_\-]{8,20}$"
+                                placeholder="Enter password" class="form-control" required="true" maxlength="20"
+                                autocomplete="off" onkeyup="checkPass()"
+                                title="Must contains atleast one number,one uppercase,one lowercase.one special character and 8 or more character">
+                            <!-- <div class="invalid-feedback">
+                                Please enter password
+                            </div> -->
+                            <div class="error" id="passError"></div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Confirm Password</label><span style="color: red;">*</span>
+                            <input type="password" id="txtConfirmPassword" minlength="3" data-toggled="myToolTip"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,\/&@_\-])[A-Za-z\d.,\/&@_\-]{8,20}$"
+                                placeholder="Confirm password" class="form-control " required="true" maxlength="20"
+                                autocomplete="off" title="Enter confirm password" onkeyup="checkPasswordMatch()">
+                            <!-- <div class="invalid-feedback">
+                                Please enter confirm password
+                            </div> -->
+                            <div class="error" id="passwordMatchError"></div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Date of Birth</label><span style="color: red;">*</span>
+                            <input type="date" id="dob" class="form-control " onchange="checkDate()" required
+                                title="To fill your date of Birth">
+                            <!-- <div class="invalid-feedback">
+                                Please enter date of birth
+                            </div> -->
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Email</label><span style="color: red;">*</span>
+                            <!-- value pattern="^[A-Za-z0-9._]{3}@[A-Za-z]{3}[.]{1}[A-Za-z]{2,3}+$" -->
+                            <!-- "^[^\s@]+@[^\s@]+\.[^\s@]+$" -->
+                            <input type="text" id="email" minlength="3" data-toggled="myToolTip"
+                                placeholder="Enter email" class="form-control " required="true" maxlength="40"
+                                autocomplete="off" pattern="^[a-zA-Z0-9.@_\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" onkeyup="checkEmail()"
+                                title="Kindly Ensure make sure that valid and accessible Email ID is entered">
+                            <!-- <div class="invalid-feedback">
+                                Please enter email
+                            </div> -->
+                            <div class="error" id="emailError"></div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Mobile Number</label><span style="color: red;">*</span>
+                            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number"
+                                pattern="[0-9]{10}" onkeyup="checkMobileNumber(this)"
+                                title="Please enter a valid 10-digit mobile number" required>
+                             <!-- <div class="invalid-feedback">
+                                Please enter mobile number
+                            </div> -->
+                            <div class="error" id="mobileNumberError"></div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Gender</label><span style="color: red;">*</span>
+                            <select id="gender" name="gender" placeholder="Select Gender" class="form-select is-invalid" required onchange=" validateGender()">
+                                <option value="" disabled selected>Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <!-- <div class="invalid-feedback">
+                                Please select gender
+                            </div> -->
+                        </div>
+
+                        <div class="col-sm-5">
+                            <label for="label-font">Pay Scale</label><span style="color: red;">*</span>
+                            <select id="payscale" name="payscale" class="form-select is-invalid" placeholder="Select pay payscale" onchange="checkPayScale()"
+                                required>
+                                <option value="" disabled selected>Select pay scale</option>
+                                <option value="1-10000">1-10000</option>
+                                <option value="10001-20000">10001-20000</option>
+                                <option value="20001-30000">20001-30000</option>
+                            </select>
+                            <!-- <div class="invalid-feedback">
+                                Please select pay scale
+                            </div> -->
+                            <div  class="error" id="PayErr"></div>
+                            <!-- <div id="result"></div> -->
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <label for="label-font">Salary</label><span style="color: red;">*</span>
+                            <input type="number" id="salary" placeholder="Enter salary" onkeyup="checkSalary()"
+                                name="salary" class="form-control" required min="" max="">
+                            <div class="error" id="slRange"></div>
+                        </div>
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-1">
+
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <input type="submit"  style="align-items: center;" class="btn btn-primary " id="submitButton" onclick="validate()" disabled="disabled">
+                        </div>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+            <div class="col-sm-2"></div>        
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js" integrity="sha384-u7IjO5zOX8h3R7w65s1K1tFfr5qBw9dpdFmE8e5g+z9tu7S2QQpGjF5mG5jZaFzFb" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.10.2/dist/umd/popper.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kE3eX2fuxiC72e7aRn7A2fbygx" crossorigin="anonymous"></script> -->
+</body>
+</html>

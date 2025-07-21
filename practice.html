@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Boxes with Content</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr); /* 12 boxes per row */
+      grid-gap: 5px; /* Spacing between boxes */
+      width: 80%;
+    }
+
+    .box {
+      background-color: #ecf0f1;
+      width: 100%;
+      padding-bottom: 100%; /* Makes the boxes square */
+      position: relative;
+      transition: background-color 0.3s ease; /* Smooth color transition */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box span {
+      position: absolute;
+      font-size: 12px;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    .box:hover {
+      animation: blink 1s infinite; /* Apply blinking animation */
+    }
+
+    @keyframes blink {
+      0% { background-color: red; }
+      25% { background-color: yellow; }
+      50% { background-color: green; }
+      75% { background-color: blue; }
+      100% { background-color: red; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Empty container where boxes will be dynamically added -->
+  </div>
+
+  <script>
+    const container = document.querySelector('.container');
+
+    // Dynamically generating 72 boxes
+    for (let i = 0; i < 72; i++) {
+      const box = document.createElement('div');
+      box.classList.add('box');
+
+      // Adding span element with content inside each box
+      const content = document.createElement('span');
+      content.textContent = `Box ${i + 1}`; // Example content
+      box.appendChild(content);
+
+      container.appendChild(box);
+    }
+  </script>
+</body>
+</html>

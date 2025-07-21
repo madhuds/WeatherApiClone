@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label>Contact Name:</label>
+      <input type="text" id="loginContact" placeholder="Enter Contact Name" required>
+      
+      <label>Password:</label>
+      <input type="password" id="loginPassword" placeholder="Enter Password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <p id="welcomeMessage"></p>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const loginContact = document.getElementById("loginContact").value;
+      const loginPassword = document.getElementById("loginPassword").value;
+
+      // Retrieve stored data
+      const storedUser = JSON.parse(localStorage.getItem("userData"));
+
+      // Check credentials
+      if (storedUser && storedUser.contactName === loginContact && storedUser.password === loginPassword) {
+        alert("Login successful!");
+        document.getElementById("welcomeMessage").textContent = `Welcome, ${storedUser.contactName}!`;
+      } else {
+        alert("Invalid Contact Name or Password");
+      }
+    });
+  </script>
+</body>
+
+</html>

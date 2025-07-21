@@ -1,0 +1,274 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazone Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="common.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="commonscript.js"></script>
+</head>
+<body>
+   <header>
+    <div class="navbarT">
+
+        <div class="nav-logo borderHover">
+            <div class="logo">
+              </div>
+        </div>
+        
+            <div class="nav-address borderHover">
+                <p class="add-first">Delover to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-second">India</p>
+                </div>
+            </div>
+     <div class="nav-search">
+        <select class="search-select">
+            <option value="">All</option>
+        </select>
+        <input placeholder="Search Amazon" class="search-input">
+        <div class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+     </div>
+
+
+     <div class="nav-singin borderHover">
+        <p class=""><span>Hello, <a class="singtheform" onclick="singupPage()" href="">sing in</a></span></p>
+        <p class="nav-second">Account & Lists</p>
+     </div>
+
+     <div class="nav-return borderHover">
+        <p class=""><span>Returns</span></p>
+        <p class="nav-second">Accounts</p>
+     </div>  
+        
+     <div class="nav-cart borderHover">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart
+     </div>
+    </div>
+    <!-- panel-section -->
+    <div class="panel">
+<div class="panel-all" onclick="openAllModal()" >
+    <i class="fa-solid fa-bars"></i>
+    All</div>
+<div class="panel-ops">
+    <p>Today's Deals</p>
+    <p>Customer Service</p>
+    <p>Registry</p>
+    <p>Gift Cards</p>
+    <p>Sell</p>
+</div>
+<div class="panel-deals">
+    Shop deals in Electronics
+</div>
+    </div>
+    <!-- 'All' Modal for customer menu -->
+<div id="allMenu" class="modal-left">
+    <h4 class="cartHeader"><i class="fa-solid fa-address-card"></i>
+        Hello Sing in</h4>
+    <span class="close" onclick="closeAllModal()">&times;</span>
+    <br/>
+    <ul class="Menusub"><li>Today's Deals</li></ul>   
+    <ul><li>Today's Deals</li>
+    <li>Customer Service</li>
+    <li>Registry</li>
+    <li>Gift Cards</li>
+<li>Sell</li></ul>
+<br/>
+<ul class="Menusub"><li>Customer Service</li></ul>  
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+
+    <ul class="Menusub"><li>Registry</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+    <ul class="Menusub"><li>Gift Cards</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+    <ul class="Menusub"><li>Sell</li></ul> 
+    <ul><li>Today's Deals</li>
+        <li>Customer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
+    <li>Sell</li></ul>
+</div>
+   </header>
+   <div class="container-fluid register">
+    <br>
+    <div class="row">
+      <div class="col-sm-3 ">
+      </div>
+      <div class="col-md-6 jumbotron formjumbotron " style="box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2)">
+
+        <br>
+
+        <div class="row">
+          <div class="col-sm-4"> </div>
+          <div class="col-sm-4">
+            <h4 class="text-center panel_heading text-color-blue"> Registration Form</h4>
+          </div>
+          <div class="col-sm-4 font-14 color-red padding-left-64px">*Indicates
+            Mandatory Fields</div>
+          <hr class="hr-border">
+        </div>
+        <br>
+
+        <form role="form" modelattribute="departmentUser"
+          action="${pageContext.request.contextPath}/bidderRegistration/${formAction}" method="POST"
+          accept-charset="UTF-8" id="">
+
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8 text-left">
+              <label class="label_font">Contact Name</label><span class="color-red">*</span>
+              <input type="text" path="contactName" value="" pattern="^[a-zA-Z][\sa-zA-Z]*" minlength="3" maxlength="50"
+                class="form-control input100 contactName" placeholder="Enter contact name" data-toggle="myToolTip"
+                title="Alphabets and space only" autocomplete="off" id="contactName" required="true" />
+            </div>
+           
+            <div class="col-sm-2"></div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8 text-left">
+              <label class="label_font">Password</label><span class="color-red">*</span>
+              <input type="password" id="password" minlength="3" data-toggled="myToolTip"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,\/&@_\-])[A-Za-z\d.,\/&@_\-]{8,20}$"
+                placeholder="Enter password" class="form-control input100" required="true" maxlength="20"
+                autocomplete="off" onkeyup="checkPass()"
+                title="Must contains atleast one number,one uppercase,one lowercase.one special character and 8 or more character">
+
+              <div class="error" id="passError"></div>
+
+
+            </div>
+            
+
+
+            <div class="col-sm-2"></div>
+
+
+          </div>
+          <!--row end-->
+          <br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 text-left">
+                    <label class="label_font">Confirm Password</label><span class="color-red">*</span>
+                    <input type="password" id="txtConfirmPassword" minlength="3" data-toggled="myToolTip"
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,\/&@_\-])[A-Za-z\d.,\/&@_\-]{8,20}$"
+                      placeholder="Confirm password" class="form-control input100" required="true" maxlength="20"
+                      autocomplete="off" title="Enter confirm password" onkeyup="checkPasswordMatch()">
+                    <div class="error" id="passwordMatchError"></div>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8 text-left">
+              <label class="label_font">Mobile Number<span class="color-red">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend" id="hidePrefix">
+                  <div class="input-group-text " id="btnGroupAddon2">+91</div>
+
+                </div>
+                <input type="text" path="mobile" value="" class=" form-control label_control mobile input100 "
+                  placeholder="Enter mobile number" title="Numbers only" maxlength="10" data-toggle="myToolTip"
+                  minlength="5" pattern="(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" autocomplete="off"
+                  id="mobile" required="true">
+              </div>
+            </div>
+            
+
+
+
+            <div class="col-sm-2"></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8 text-left">
+                <label class="label_font">Date Of Birth<span class="color-red">*</span></label>
+                <input type="date" class="form-control input100" id="dob" required="true" onchange="checkDate()" title=""
+                  To fill your date of Birth"">
+              </div>
+            <div class="col-sm-2"></div>
+          </div>
+          <br/>
+
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8 text-left">
+              <label class="label_font">Email ID<span class="color-red">*</span></label>
+              <input type="text" path="email" value="" class=" email input100 form-control" placeholder="Enter email ID"
+                pattern="[a-zA-Z0-9.@_-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                title="Format:abc@xyz.com Note:An authentication link will be sent to this Email ID and it will be used for further correspondence, Kindly make sure that valid and accessible email ID is entered. Once saved it cannot be changed"
+                data-toggle="myToolTip" minlength="6" maxlength="50" autocomplete="off" id="email" required="true">
+
+            </div>
+           
+            <div class="col-sm-2"></div>
+          </div>
+          <!-- row end -->
+          <br>
+
+
+            
+          <div class="row">
+            <div class="col-sm-2"></div>
+
+           
+
+            <div class="col-md-8 text-left">
+              <label class="label_font">Pin Code<span class="color-red">*</span></label>
+              <input id="pinCode" name="pinCode" data-toggle="myToolTip" pattern="[0-9]{6}" placeholder="Enter pin code"
+                type="text" class="form-control label_control input100" required="true" value="" maxlength="6"
+                autocomplete="off" aria-label="Six digit Pin code" title="Six digit Pin code"
+                data-original-title="Six digit Pin code">
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <input class="btn btn-primary themebutton" id="Save" type="submit" value="Register">
+              <a type="button" class="btn btn-primary themebutton" href="home.html">Back </a>
+            </div>
+          </div>
+          <br>
+        </form>
+      </div>
+      <div class="col-sm-3">
+        <div class="card policycard">
+          <div class="card-header policycardheader main-background-color text-center">Password Policy</div>
+          <div class="card-body card-body-p ">
+            <p class="card-content">Your password must comply with the following rules</p>
+            <p class="card-content">1 Length must be between 8 and 20 characters</p>
+            <p class="card-content">2 Atleast one Uppercase and Lowercase character</p>
+            <p class="card-content">3 Atleast one Number</p>
+            <p class="card-content">4 Atleast one Special character(.,_-/&amp;@)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  
+</body>
+</html>
